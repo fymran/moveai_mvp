@@ -246,6 +246,8 @@ def metrics(requests: list[dict[str, Any]], routes: list[dict[str, Any]],
         if not isinstance(route, Mapping) or not isinstance(route.get("requests"), (list, tuple)):
             raise ValueError(f"metrics: route at index {route_index} must contain a requests list")
         route_label = f"metrics: route at index {route_index}"
+        if not route["requests"]:
+            raise ValueError(f"{route_label} is empty; empty routes are not allowed")
         if "vehicle_km" not in route or "passengers" not in route:
             raise ValueError(f"{route_label} requires vehicle_km and passengers")
         route_km = _finite_nonnegative_number(route["vehicle_km"], f"{route_label} vehicle_km")
@@ -258,17 +260,14 @@ def metrics(requests: list[dict[str, Any]], routes: list[dict[str, Any]],
         if unknown_route_ids:
             raise ValueError(f"metrics: unknown request IDs in routes: {sorted(unknown_route_ids)}")
         route_passengers = route["passengers"]
-        if route_request_ids:
-            route_passengers = _positive_integer(route_passengers, f"{route_label} passengers")
-            expected_passengers = sum(int(request_by_id[rid]["passengers"])
-                                      for rid in route_request_ids if rid in request_by_id)
-            if route_passengers != expected_passengers:
-                raise ValueError(f"{route_label} passengers must equal the sum of assigned request passengers")
-        else:
-            if isinstance(route_passengers, bool) or not isinstance(route_passengers, Integral) or route_passengers != 0:
-                raise ValueError(f"{route_label} passengers must be zero for an empty route")
+        route_passengers = _positive_integer(route_passengers, f"{route_label} passengers")
+        expected_passengers = sum(int(request_by_id[rid]["passengers"]) for rid in route_request_ids)
+        if route_passengers != expected_passengers:
+            raise ValueError(f"{route_label} passengers must equal the sum of assigned request passengers")
         route_capacity = (_positive_integer(route["capacity"], f"{route_label} capacity")
                           if "capacity" in route else capacity)
+        if route_passengers > route_capacity:
+            raise ValueError(f"{route_label} passengers exceed route capacity")
         wait_map = route.get("waits")
         detour_map = route.get("detours")
         if not isinstance(wait_map, Mapping) or not isinstance(detour_map, Mapping):

@@ -266,6 +266,36 @@ class RoutingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "requires vehicle_km and passengers"):
             metrics(reqs, [route], [], 4)
 
+    def test_metrics_accepts_route_at_exact_capacity(self):
+        reqs = [request("R1", passengers=2)]
+        route = baseline(reqs, capacity=4)["routes"][0]
+        route["capacity"] = 2
+        summary = metrics(reqs, [route], [], capacity=4)
+        self.assertEqual(summary["served"], 1)
+        self.assertEqual(summary["routes"], 1)
+
+    def test_metrics_rejects_passengers_above_route_capacity(self):
+        reqs = [request("R1", passengers=2)]
+        route = baseline(reqs, capacity=4)["routes"][0]
+        route["capacity"] = 1
+        with self.assertRaisesRegex(ValueError, "passengers exceed route capacity"):
+            metrics(reqs, [route], [], capacity=4)
+
+    def test_metrics_uses_fallback_capacity_for_capacity_check(self):
+        reqs = [request("R1", passengers=2)]
+        route = baseline(reqs, capacity=4)["routes"][0]
+        route.pop("capacity")
+        self.assertEqual(metrics(reqs, [route], [], capacity=2)["served"], 1)
+        with self.assertRaisesRegex(ValueError, "passengers exceed route capacity"):
+            metrics(reqs, [route], [], capacity=1)
+
+    def test_metrics_rejects_empty_routes_regardless_of_distance(self):
+        for vehicle_km in (0.0, 5.0):
+            route = {"requests": [], "passengers": 0, "capacity": 4,
+                     "vehicle_km": vehicle_km, "waits": {}, "detours": {}}
+            with self.subTest(vehicle_km=vehicle_km), self.assertRaisesRegex(ValueError, "empty routes are not allowed"):
+                metrics([], [route], [], capacity=4)
+
     def test_zero_distance_occupancy_returns_zero(self):
         reqs = [request("R1", pickup="Transit Station", passengers=2)]
         baseline_result = baseline(reqs, capacity=4)
