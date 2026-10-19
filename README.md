@@ -34,9 +34,9 @@ This greedy heuristic is explainable and reproducible but order-dependent. It do
 - **Vehicle kilometres:** sum of route leg distances. Each vehicle starts at its first pickup; depot and repositioning mileage is omitted.
 - **Routes / vehicles:** one vehicle per planned route. The baseline deliberately uses one direct vehicle per request.
 - **Served / unserved requests:** counts by request ID. A request is served if included in a route; over-capacity requests are unserved.
-- **Passenger waiting:** pickup arrival time minus requested departure time, weighted by the number of passengers on each request, then summed and averaged per passenger. The model allows a vehicle to wait until a later request's requested time.
+- **Passenger waiting:** pickup arrival time minus requested departure time. Total waiting is passenger-minutes (each request's wait multiplied by its passenger count); average waiting is passenger-minutes divided by the number of served passengers. The model allows a vehicle to wait until a later request's requested time.
 - **Passenger detour:** distance ridden from a passenger's pickup to the station minus that passenger's direct synthetic distance.
-- **Vehicle occupancy:** passenger-kilometres / capacity seat-kilometres, weighted by vehicle route distance. This describes passenger seat utilization in this simplified model, not time-based occupancy.
+- **Vehicle occupancy:** total passenger-kilometres divided by total capacity seat-kilometres across routes, using each route's capacity when provided and the metrics function's `capacity` argument otherwise. A zero total route distance yields 0% because the ratio has a zero denominator. This describes distance-weighted passenger seat utilization in this simplified model, not time-based occupancy.
 
 ## Synthetic-data assumptions
 
