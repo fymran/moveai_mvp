@@ -36,7 +36,7 @@ comparison = pd.DataFrame([
     {"Metric": "Requests unserved", "Individual-trip baseline": bm["unserved"], "MoveAI heuristic": mm["unserved"]},
     {"Metric": "Total passenger waiting (synthetic passenger-minutes)", "Individual-trip baseline": bm["total_wait_min"], "MoveAI heuristic": mm["total_wait_min"]},
     {"Metric": "Average passenger detour (synthetic km)", "Individual-trip baseline": bm["average_detour_km"], "MoveAI heuristic": mm["average_detour_km"]},
-    {"Metric": "Vehicle occupancy (seat-km / capacity seat-km)", "Individual-trip baseline": bm["occupancy_pct"], "MoveAI heuristic": mm["occupancy_pct"]},
+    {"Metric": "Vehicle occupancy (passenger-km / capacity seat-km)", "Individual-trip baseline": bm["occupancy_pct"], "MoveAI heuristic": mm["occupancy_pct"]},
 ])
 st.dataframe(comparison, use_container_width=True, hide_index=True)
 

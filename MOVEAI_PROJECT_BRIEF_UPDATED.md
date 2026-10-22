@@ -203,3 +203,63 @@ Target deadline: 23 October 2026.
 5. Label synthetic data and illustrative maps prominently.
 6. Separate verified facts, assumptions, simulated results, and future plans.
 7. Update this brief when important decisions or implementation status change.
+
+## 13. Official hackathon briefing details transcribed from the user's slides
+
+These details are taken from the hackathon briefing-slide images shared in this conversation. Follow any later official instructions if the organizers issue updates.
+
+### Theme framing
+
+- **Theme 1 — People:** “How might we enable every resident to live healthier, safer, more connected and more fulfilling lives?”
+- **Theme 2 — Planet:** “How might we create townships that regenerate the environment and make sustainable living effortless?”
+- Planet focus areas shown: Waste Management, Energy Efficiency, Green Transport, Climate Resilience, Circular Economy, Water Conservation, and Biodiversity.
+- The briefing emphasizes solving one meaningful problem, validating it, and measuring environmental improvement.
+- The process shown is: Observe → Identify → Understand → Create → Build.
+- The six qualities of a strong solution are: Relevant, Impactful, Innovative, Feasible, Scalable, and Evidence Based.
+
+### Submission requirements shown in the briefing
+
+**Deadline: 11:59 PM, 23 October 2026.**
+
+Required:
+1. **Pitch deck:** maximum 10 main slides; appendix allowed.
+2. **Video/demo link:** mandatory, with a 5-minute video or live demo link demonstrating the solution.
+3. **Prototype/code link:** mandatory; link to the prototype, codebase, or GitHub repository.
+
+Optional:
+4. Supporting documents or additional links where applicable.
+
+The briefing says incomplete submissions will not be considered. Confirm link access and submission-portal requirements before submitting.
+
+### Judging criteria shown in the briefing
+
+| Criterion | Weight | What it asks |
+|---|---:|---|
+| Impact & Sustainability Value | 25% | Meaningful and measurable resident, community, or environmental outcomes |
+| Innovation & Differentiation | 20% | Genuine originality or a differentiated approach, not simply repackaging an existing solution |
+| Feasibility & Deliverability | 20% | Whether the solution can realistically be piloted and implemented within a township |
+| Strategic Fit & Theme Relevance | 15% | Clear connection to a People or Planet challenge and an SDP township priority |
+| Commercial & Value Multiplication | 10% | Potential to create value for SDP, township businesses and/or residents, and scale |
+| Team, Evidence & Pitch Quality | 10% | Research and validation, a credible solution, and clear communication |
+
+### Implications for MoveAI
+
+- Submission needs a deck, a working prototype/code link, and a 5-minute demo/video link. A written proposal alone is insufficient.
+- Keep the main deck within 10 slides; move detailed methodology and test cases to an appendix if useful.
+- Present the solo-builder status honestly and keep the scope realistic.
+- Report simulation outcomes as simulation outcomes, not real-world impact. State the baseline and assumptions.
+- For Innovation, compare MoveAI with fixed-route shuttles, simple dispatch, and ordinary booking/navigation tools; do not claim uniqueness without evidence.
+- For Feasibility, show the running dashboard, actual test results, known limitations, and a practical pilot path.
+- For Commercial Value, identify township operators or management as prospective customers, and label pricing/savings as hypotheses until validated.
+- For Evidence, prioritize reproducible tests and real problem validation if feasible; do not invent interviews or demand.
+- The 5-minute demo should show one end-to-end scenario: passenger requests → route assignment → baseline comparison → metrics and limitations.
+
+### Submission checklist
+
+- [ ] Main pitch deck has no more than 10 slides.
+- [ ] Appendix is separate from the main deck.
+- [ ] A 5-minute demo/video link is ready and accessible.
+- [ ] Prototype/code link is ready and accessible to judges.
+- [ ] Demo uses the same scenario and assumptions as the reported metrics.
+- [ ] Simulated data and unvalidated claims are labelled.
+- [ ] All required deliverables are submitted before 11:59 PM on 23 October 2026.
